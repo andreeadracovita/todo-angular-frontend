@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -10,4 +11,11 @@ import { CommonModule } from '@angular/common';
 })
 export class WelcomeComponent {
 
+  name: string = '';
+  // ActivatedRoute
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.name = this.route.snapshot.params['name'];
+  }
 }

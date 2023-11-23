@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +16,12 @@ export class LoginComponent {
   errorMessage: string = 'Invalid credentials!';
   invalidLogin: boolean = false;
 
+  // Dependency Injection
+  constructor(private router: Router) { }
+
   handleLogin() {
     if (this.username === 'aracovita' && this.password === 'pass') {
+      this.router.navigate(['welcome']);
       this.invalidLogin = false;
     } else {
       this.invalidLogin = true;
