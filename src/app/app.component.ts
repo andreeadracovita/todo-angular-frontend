@@ -7,7 +7,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LoginComponent, WelcomeComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    LoginComponent,
+    WelcomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
