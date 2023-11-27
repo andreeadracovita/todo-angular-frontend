@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +18,13 @@ export class LoginComponent {
   invalidLogin: boolean = false;
 
   // Dependency Injection
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private hardcodedAuthenticationService: HardcodedAuthenticationService
+    ) { }
 
   handleLogin() {
-    if (this.username === 'aracovita' && this.password === 'pass') {
+    if (this.hardcodedAuthenticationService.authenticate(this.username, this.password)) {
       this.router.navigate(['welcome/' + this.username]);
       this.invalidLogin = false;
     } else {
