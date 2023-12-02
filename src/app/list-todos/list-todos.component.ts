@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TodoDataService } from '../service/data/todo-data.service';
+import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 
 export class Todo {
   constructor(
@@ -21,9 +23,24 @@ export class Todo {
 })
 export class ListTodosComponent {
 
-  todos = [
-    new Todo(1, 'Learn Angular', false, new Date()),
-    new Todo(2, 'Become an Expert at Angular', false, new Date()),
-    new Todo(3, 'Run a marathon', false, new Date())
-  ]
+  todos: Todo[] = [];
+
+  constructor(
+    private service: TodoDataService,
+    private hardcodedAuthenticatedService: HardcodedAuthenticationService
+  ) {}
+
+  ngOnInit() {
+    const username = this.hardcodedAuthenticatedService.getUsername();
+    if (!username) {
+      return;
+    }
+    this.service.retrieveAllTodos(username).subscribe(
+      resonse => this.handleSuccessfulResponse(resonse)
+    )
+  }
+
+  handleSuccessfulResponse(response: Todo[]): void {
+    this.todos = response;
+  }
 }

@@ -20,6 +20,10 @@ export class HardcodedAuthenticationService {
     return !(user === null);
   }
 
+  getUsername() {
+    return sessionStorage.getItem('authenticatedUser');
+  }
+
   logout(): void {
     sessionStorage.removeItem('authenticatedUser');
   }
