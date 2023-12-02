@@ -21,7 +21,11 @@ export class HardcodedAuthenticationService {
   }
 
   getUsername() {
-    return sessionStorage.getItem('authenticatedUser');
+    const user = sessionStorage.getItem('authenticatedUser');
+    if (user) {
+      return user;
+    }
+    return undefined;
   }
 
   logout(): void {

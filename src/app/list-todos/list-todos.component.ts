@@ -24,6 +24,7 @@ export class Todo {
 export class ListTodosComponent {
 
   todos: Todo[] = [];
+  username?: string = undefined;
 
   constructor(
     private service: TodoDataService,
@@ -31,16 +32,35 @@ export class ListTodosComponent {
   ) {}
 
   ngOnInit() {
-    const username = this.hardcodedAuthenticatedService.getUsername();
-    if (!username) {
+    this.username = this.hardcodedAuthenticatedService.getUsername();
+    if (!this.username) {
       return;
     }
-    this.service.retrieveAllTodos(username).subscribe(
+    this.refreshTodos();
+  }
+
+  refreshTodos(): void {
+    if (!this.username) {
+      return;
+    }
+    this.service.retrieveAllTodos(this.username).subscribe(
       resonse => this.handleSuccessfulResponse(resonse)
     )
   }
 
   handleSuccessfulResponse(response: Todo[]): void {
     this.todos = response;
+  }
+
+  deleteTodoItem(id: number): void {
+    if (!this.username) {
+      return;
+    }
+    this.service.deleteTodoById(this.username, id).subscribe(
+      () => {
+        console.log("Successfully deleted todo with id " + id);
+        this.refreshTodos();
+      }
+    );
   }
 }

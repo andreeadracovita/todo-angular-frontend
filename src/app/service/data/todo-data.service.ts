@@ -14,4 +14,8 @@ export class TodoDataService {
   retrieveAllTodos(username: string) {
     return this.http.get<Todo[]>(`http://localhost:8080/users/${username}/todos`);
   }
+
+  deleteTodoById(username: string, id: number) {
+    return this.http.delete(`http://localhost:8080/users/${username}/todos/${id}`);
+  }
 }
