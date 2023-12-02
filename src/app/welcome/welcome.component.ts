@@ -26,12 +26,17 @@ export class WelcomeComponent {
   }
 
   getWelcomeMessage(): void {
-    this.service.executeHelloWorldBeanService().subscribe(
-      response => this.handleSuccessfulResponse(response)
+    this.service.executeHelloWorldBeanServiceWithParameter(this.name).subscribe(
+      response => this.handleSuccessfulResponse(response),
+      error => this.handleErrorResponse(error)
     );
   }
 
   handleSuccessfulResponse(response: HelloWorldBean): void {
     this.welcomeMessageFromService = response.message;
+  }
+
+  handleErrorResponse(error: any): void {
+    this.welcomeMessageFromService = error.error.message;
   }
 }
