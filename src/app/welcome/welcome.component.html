@@ -6,4 +6,10 @@
     <div>
         You can manage your todos <a routerLink="/todos">here</a>
     </div>
+    <div>
+        <button (click)="getWelcomeMessage()" class="btn btn-primary">Hello there!</button>
+    </div>
+    <div *ngIf="welcomeMessageFromService">
+        {{ welcomeMessageFromService }}
+    </div>
 </div>
