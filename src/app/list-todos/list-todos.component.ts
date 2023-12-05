@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoDataService } from '../service/data/todo-data.service';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+import { Router } from '@angular/router';
 
 export class Todo {
   constructor(
@@ -28,7 +29,8 @@ export class ListTodosComponent {
 
   constructor(
     private service: TodoDataService,
-    private hardcodedAuthenticatedService: HardcodedAuthenticationService
+    private hardcodedAuthenticatedService: HardcodedAuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -62,5 +64,9 @@ export class ListTodosComponent {
         this.refreshTodos();
       }
     );
+  }
+
+  updateTodoItem(id: number): void {
+    this.router.navigate(['todos', id]);
   }
 }
