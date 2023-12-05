@@ -69,4 +69,8 @@ export class ListTodosComponent {
   updateTodoItem(id: number): void {
     this.router.navigate(['todos', id]);
   }
+
+  addTodoItem(): void {
+    this.router.navigate(['todos', -1]);
+  }
 }

@@ -38,20 +38,29 @@ export class TodoComponent {
     if (!this.todoId) {
       return;
     }
+    this.todo.id = this.todoId;
 
-    this.todoService.retrieveTodoById(this.username, this.todoId)
-      .subscribe (
-        data => this.todo = data
-      )
+    if (this.todoId != -1) {
+      this.todoService.retrieveTodoById(this.username, this.todoId)
+        .subscribe (
+          data => this.todo = data
+        );
+    }
   }
   
   saveTodo(): void {
     if (!this.username || !this.todoId) {
       return;
     }
-    this.todoService.updateTodoById(this.username, this.todoId, this.todo).subscribe(
-      data => { console.log(data); }
-    );
-    this.router.navigate(['todos']);
+
+    if (this.todoId == -1) {
+      this.todoService.addTodo(this.username, this.todo).subscribe(
+        () => { this.router.navigate(['todos']); }
+      );
+    } else {
+      this.todoService.updateTodoById(this.username, this.todoId, this.todo).subscribe(
+        () => { this.router.navigate(['todos']); }
+      );
+    }
   }
 }
