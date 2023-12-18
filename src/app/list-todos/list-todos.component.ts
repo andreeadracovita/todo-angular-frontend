@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoDataService } from '../service/data/todo-data.service';
-import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 import { Router } from '@angular/router';
+import { BasicAuthenticationService } from '../service/basic-authentication.service';
 
 export class Todo {
   constructor(
@@ -25,16 +25,16 @@ export class Todo {
 export class ListTodosComponent {
 
   todos: Todo[] = [];
-  username?: string = undefined;
+  username: string | null = null;
 
   constructor(
     private service: TodoDataService,
-    private hardcodedAuthenticatedService: HardcodedAuthenticationService,
+    private basicAuthenticationService: BasicAuthenticationService,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.username = this.hardcodedAuthenticatedService.getUsername();
+    this.username = this.basicAuthenticationService.getAuthenticatedUser();
     if (!this.username) {
       return;
     }

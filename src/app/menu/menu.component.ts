@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+import { BasicAuthenticationService } from '../service/basic-authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -11,5 +11,5 @@ import { HardcodedAuthenticationService } from '../service/hardcoded-authenticat
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
-  constructor(public hardcodedAuthenticationService: HardcodedAuthenticationService) { }
+  constructor(public basicAuthenticationService: BasicAuthenticationService) { }
 }
