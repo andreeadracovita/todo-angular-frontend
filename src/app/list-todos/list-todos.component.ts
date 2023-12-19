@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoDataService } from '../service/data/todo-data.service';
 import { Router } from '@angular/router';
-import { BasicAuthenticationService } from '../service/basic-authentication.service';
+import { JwtAuthenticationService } from '../service/jwt-authentication.service';
 
 export class Todo {
   constructor(
@@ -29,12 +29,12 @@ export class ListTodosComponent {
 
   constructor(
     private service: TodoDataService,
-    private basicAuthenticationService: BasicAuthenticationService,
+    private jwtAuthenticationService: JwtAuthenticationService,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.username = this.basicAuthenticationService.getAuthenticatedUser();
+    this.username = this.jwtAuthenticationService.getAuthenticatedUser();
     if (!this.username) {
       return;
     }

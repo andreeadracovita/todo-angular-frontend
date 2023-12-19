@@ -4,7 +4,7 @@ import { TodoDataService } from '../service/data/todo-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Todo } from '../list-todos/list-todos.component';
 import { FormsModule } from '@angular/forms';
-import { BasicAuthenticationService } from '../service/basic-authentication.service';
+import { JwtAuthenticationService } from '../service/jwt-authentication.service';
 
 @Component({
   selector: 'app-todo',
@@ -22,14 +22,14 @@ export class TodoComponent {
   constructor(
     private route: ActivatedRoute,
     private todoService: TodoDataService,
-    private basicAuthenticatedService: BasicAuthenticationService,
+    private jwtAuthenticationService: JwtAuthenticationService,
     private router: Router
   ) {
     this.todo = new Todo(-1, '', false, new Date());
   }
 
   ngOnInit() {
-    this.username = this.basicAuthenticatedService.getAuthenticatedUser();
+    this.username = this.jwtAuthenticationService.getAuthenticatedUser();
     if (!this.username) {
       return;
     }

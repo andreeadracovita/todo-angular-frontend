@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BasicAuthenticationService } from '../service/basic-authentication.service';
+import { JwtAuthenticationService } from '../service/jwt-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -20,11 +20,11 @@ export class LoginComponent {
   // Dependency Injection
   constructor(
     private router: Router,
-    private basicAuthenticationService: BasicAuthenticationService,
+    private jwtAuthenticationService: JwtAuthenticationService,
     ) { }
 
-  handleBasicAuthLogin() {
-    this.basicAuthenticationService.executeAuthenticationService(this.username, this.password)
+  handleJwtAuthLogin() {
+    this.jwtAuthenticationService.executeJwtAuthenticationService(this.username, this.password)
       .subscribe(
         () => {
           this.router.navigate(['welcome/' + this.username]);

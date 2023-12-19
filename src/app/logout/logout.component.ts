@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BasicAuthenticationService } from '../service/basic-authentication.service';
+import { JwtAuthenticationService } from '../service/jwt-authentication.service';
 
 @Component({
   selector: 'app-logout',
@@ -11,10 +11,10 @@ import { BasicAuthenticationService } from '../service/basic-authentication.serv
 })
 export class LogoutComponent {
   constructor(
-    private basicAuthenticationService: BasicAuthenticationService,
+    private jwtAuthenticationService: JwtAuthenticationService,
   ) { }
 
   ngOnInit() {
-    this.basicAuthenticationService.logout();
+    this.jwtAuthenticationService.logout();
   }
 }

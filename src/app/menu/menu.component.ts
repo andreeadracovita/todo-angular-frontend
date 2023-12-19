@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { BasicAuthenticationService } from '../service/basic-authentication.service';
+import { JwtAuthenticationService } from '../service/jwt-authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -11,5 +11,5 @@ import { BasicAuthenticationService } from '../service/basic-authentication.serv
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
-  constructor(public basicAuthenticationService: BasicAuthenticationService) { }
+  constructor(public jwtAuthenticationService: JwtAuthenticationService) { }
 }
